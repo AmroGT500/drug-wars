@@ -1,5 +1,11 @@
 import gameState
 import utils
+from splash import logo
+
+
+def printSplash():
+    utils.clear()
+    print(logo)
 
 
 def printDrugs():

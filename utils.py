@@ -1,6 +1,8 @@
 
 import os
 from typing import List, Tuple
+import gameState
+import random
 
 
 def clear():
@@ -9,6 +11,7 @@ def clear():
 
 def pocketSpaceLeft(drugs: Tuple[str, int, int], totalPocketSpace: int):
     spaceTaken = 0
+
     for drug, amount, price in drugs:
         spaceTaken = spaceTaken + amount
     return totalPocketSpace - spaceTaken
@@ -38,6 +41,13 @@ def selectOption(options: List[str]):
         if selectedIndex == None:
             print('incorrect input. type the word... dummy')
 
-    print(f'You chose to {options[selectedIndex]}\n')
+    print(f'You chose {options[selectedIndex]}\n')
 
     return selectedIndex
+
+
+def randomizeDrug():
+    for i, (drug, amount, price) in enumerate(gameState.drugs):
+        low = gameState.drugVariance[gameState.currentCity][i][0]
+        high = gameState.drugVariance[gameState.currentCity][i][1]
+        gameState.drugs[i] = (drug, amount, random.randint(low, high))
